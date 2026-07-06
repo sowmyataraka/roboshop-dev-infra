@@ -12,4 +12,4 @@ variable "zone_id" {
 
 variable "domain_name" {
     default = "daws90s.uk"
-}9050
+}

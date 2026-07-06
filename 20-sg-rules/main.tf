@@ -311,15 +311,15 @@ resource "aws_security_group_rule" "bastion_my_public_ip" {
   security_group_id = local.bastion_sg_id
 } */
 
-resource "aws_security_group_rule" "bastion_my_public_ip" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks = ["89.243.246.30/32"]
-  #source_security_group_id = local.vpn_sg_id
-  security_group_id = local.bastion_sg_id
-}
+# resource "aws_security_group_rule" "bastion_my_public_ip" {
+#   type              = "ingress"
+#   from_port         = 22
+#   to_port           = 22
+#   protocol          = "tcp"
+#   cidr_blocks = ["89.243.246.30/32"]
+#   #source_security_group_id = local.vpn_sg_id
+#   security_group_id = local.bastion_sg_id
+# }
 
 # VPN
 resource "aws_security_group_rule" "vpn_public_1194" {

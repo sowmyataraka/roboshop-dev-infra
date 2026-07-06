@@ -53,3 +53,7 @@ data "aws_ssm_parameter" "bastion_sg_id" {
 data "http" "my_public_ip" {
   url = "https://ipv4.icanhazip.com"
 }
+
+data "http" "my_public_ip" {
+  url = "https://ipv4.icanhazip.com"
+}

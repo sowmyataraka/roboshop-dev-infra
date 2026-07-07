@@ -292,7 +292,7 @@ resource "aws_security_group_rule" "frontend_alb_http" {
   security_group_id = local.frontend_alb_sg_id
 }
 
-# Bastion
+/*# Bastion
 resource "aws_security_group_rule" "bastion_my_public_ip" {
   type              = "ingress"
   from_port         = 22
@@ -300,34 +300,24 @@ resource "aws_security_group_rule" "bastion_my_public_ip" {
   protocol          = "tcp"
   cidr_blocks = ["${chomp(data.http.my_public_ip.response_body)}/32"]
   security_group_id = local.bastion_sg_id
-}
-# Bastion
-/* resource "aws_security_group_rule" "bastion_my_public_ip" {
+}*/
+
+resource "aws_security_group_rule" "bastion_my_public_ip" {
   type              = "ingress"
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks = ["${chomp(data.http.my_public_ip.response_body)}/32"]
+  source_security_group_id = local.bastion_sg_id
   security_group_id = local.bastion_sg_id
-} */
-
-# resource "aws_security_group_rule" "bastion_my_public_ip" {
-#    type              = "ingress"
-#    from_port         = 22
-#    to_port           = 22
-#    protocol          = "tcp"
-#    cidr_blocks = ["89.243.246.30/32"]
-#    #source_security_group_id = local.vpn_sg_id
-#    security_group_id = local.bastion_sg_id
-#  }
-
-# VPN
+  }
+  
+  # VPN
 resource "aws_security_group_rule" "vpn_public_1194" {
   type              = "ingress"
   from_port         = 1194
   to_port           = 1194
   protocol          = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["10.0.2.215/32"]#VPN IP address
   security_group_id = local.vpn_sg_id
 }
 
